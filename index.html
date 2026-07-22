@@ -1,0 +1,4750 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ARSENAL 1968</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+
+background:#68685c;
+color:white;
+overflow-x:hidden;
+
+}
+
+:root{
+
+--verde:#071216;
+--verde2:#c0b08f;
+--preto:#68685c;
+--cinza:#222;
+--cinza2:#333;
+--branco:#eee;
+--vermelho:#b80000;
+
+}
+
+header{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:70px;
+
+background:#010608;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 25px;
+
+z-index:999;
+
+border-bottom:2px solid var(--verde);
+
+}
+
+.logo{
+
+font-size:26px;
+font-weight:bold;
+letter-spacing:3px;
+
+color:var(--verde2);
+
+}
+
+.logo span{
+
+color:white;
+
+}
+
+.menu{
+
+display:flex;
+gap:15px;
+
+}
+
+.menu button{
+
+background:transparent;
+
+border:1px solid var(--verde);
+
+color:white;
+
+padding:10px 18px;
+
+cursor:pointer;
+
+transition:.3s;
+
+border-radius:6px;
+
+}
+
+.menu button:hover{
+
+background:var(--verde);
+
+color:#68685c;
+
+}
+
+main{
+
+margin-top:90px;
+
+padding:20px;
+
+}
+
+.hero{
+
+width:100%;
+
+height:260px;
+
+border-radius:15px;
+
+background:
+
+linear-gradient(
+
+rgba(0,0,0,.5),
+
+rgba(0,0,0,.5)
+
+),
+
+url("https://i.ibb.co/39c4JH8w/1784667805406.png");
+
+background-size:cover;
+
+background-position:center;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+padding:40px;
+
+border:2px solid var(--verde);
+
+}
+
+.hero h1{
+
+font-size:42px;
+
+margin-bottom:10px;
+
+}
+
+.hero p{
+
+max-width:700px;
+
+line-height:1.6;
+
+color:#ddd;
+
+}
+
+.search-area{
+
+margin-top:30px;
+
+display:flex;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+}
+
+.search{
+
+flex:1;
+
+min-width:260px;
+
+padding:15px;
+
+background:#222;
+
+border:none;
+
+outline:none;
+
+color:white;
+
+font-size:16px;
+
+border-radius:8px;
+
+}
+
+.filter{
+
+padding:15px;
+
+background:#222;
+
+color:white;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+}
+
+.stats{
+
+margin-top:30px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+gap:20px;
+
+}
+
+.stat{
+
+background:#222;
+
+padding:20px;
+
+border-radius:10px;
+
+border-left:5px solid var(--verde);
+
+}
+
+.stat h2{
+
+font-size:34px;
+
+color:var(--verde2);
+
+}
+
+.stat p{
+
+margin-top:10px;
+
+color:#ccc;
+
+}
+
+.cards{
+
+margin-top:40px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+
+gap:25px;
+
+}
+
+.card{
+
+background:#1e1e1e;
+
+border-radius:12px;
+
+overflow:hidden;
+
+transition:.3s;
+
+cursor:pointer;
+
+border:1px solid #333;
+
+}
+
+.card:hover{
+
+transform:translateY(-6px);
+
+border-color:var(--verde);
+
+}
+
+.card img{
+
+width:100%;
+
+height:180px;
+
+object-fit:cover;
+
+}
+
+.card-body{
+
+padding:18px;
+
+}
+
+.card-title{
+
+font-size:22px;
+
+margin-bottom:10px;
+
+}
+
+.card-category{
+
+display:inline-block;
+
+padding:6px 12px;
+
+background:var(--verde);
+
+color:#c0b08f;
+
+font-weight:bold;
+
+border-radius:5px;
+
+margin-bottom:15px;
+
+}
+
+.card-info{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:15px;
+
+font-size:14px;
+
+color:#bbb;
+
+}
+
+.modal{
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(0,0,0,.85);
+
+display:none;
+
+align-items:center;
+
+justify-content:center;
+
+padding:20px;
+
+z-index:9999;
+
+}
+
+.modal-content{
+
+background:#202020;
+
+width:100%;
+
+max-width:900px;
+
+border-radius:15px;
+
+overflow:auto;
+
+max-height:90vh;
+
+border:2px solid var(--verde);
+
+}
+
+.close{
+
+float:right;
+
+font-size:35px;
+
+cursor:pointer;
+
+padding:15px;
+
+}
+
+.modal img{
+
+width:100%;
+
+height:350px;
+
+object-fit:cover;
+
+}
+
+.modal-body{
+
+padding:25px;
+
+}
+
+.modal-body h2{
+
+margin-bottom:15px;
+
+font-size:34px;
+
+}
+
+.modal-body p{
+
+line-height:1.7;
+
+margin-bottom:12px;
+
+color:#ddd;
+
+}
+
+@media(max-width:700px){
+
+.hero{
+
+height:auto;
+
+padding:25px;
+
+}
+
+.hero h1{
+
+font-size:30px;
+
+}
+
+header{
+
+padding:15px;
+
+flex-direction:column;
+
+height:auto;
+
+}
+
+main{
+
+margin-top:120px;
+
+}
+
+}#oficina{
+
+display:none;
+
+flex-direction:column;
+
+gap:20px;
+
+padding:20px;
+
+}
+
+
+#pesquisaOficina{
+
+width:100%;
+
+padding:12px;
+
+font-size:16px;
+
+margin-bottom:15px;
+
+border-radius:10px;
+
+border:none;
+
+}
+
+#oficinaImagem{
+
+width:100%;
+
+max-width:350px;
+
+height:220px;
+
+margin:auto;
+
+display:block;
+
+object-fit:contain;
+
+background:#222;
+
+border-radius:12px;
+
+padding:10px;
+
+}
+
+#listaArmasOficina{
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+max-width:700px;
+
+margin:auto;
+
+}
+
+.armaOficina{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+padding:12px;
+
+background:#242424;
+
+border-radius:12px;
+
+cursor:pointer;
+
+transition:.2s;
+
+border:1px solid #333;
+
+}
+
+.armaOficina:hover{
+
+transform:scale(1.02);
+
+background:#323232;
+
+}
+
+.armaOficina img{
+
+width:80px;
+
+height:60px;
+
+object-fit:contain;
+
+background:#111;
+
+padding:5px;
+
+border-radius:8px;
+
+flex-shrink:0;
+
+}
+#listaAcessorios{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+
+gap:12px;
+
+margin-top:15px;
+
+}
+.itemAcessorio{
+
+background:#262626;
+
+border-radius:10px;
+
+padding:12px;
+
+text-align:center;
+
+border:1px solid #444;
+
+}
+
+.itemAcessorio:hover{
+
+transform:translateY(-3px);
+
+}
+
+.itemAcessorio button{
+
+width:100%;
+
+margin-top:10px;
+
+padding:10px;
+
+font-weight:bold;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+}@media(max-width:768px){
+
+#oficina{
+
+padding:12px;
+
+}
+
+#oficinaImagem{
+
+width:100%;
+
+max-width:260px;
+
+height:150px;
+
+}
+
+#listaArmasOficina{
+
+max-width:100%;
+
+}
+
+#listaAcessorios{
+
+grid-template-columns:1fr;
+
+}
+
+.itemAcessorio{
+
+padding:10px;
+
+}
+
+}
+#oficinaLista{
+
+display:block;
+
+}
+
+#oficinaFicha{
+
+max-width:700px;
+
+margin:auto;
+
+}
+
+#voltarLista{
+
+margin-bottom:20px;
+
+padding:10px 18px;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+font-size:16px;
+
+font-weight:bold;
+
+}
+.imgAcessorio{
+
+width:42px;
+
+height:42px;
+
+object-fit:contain;
+
+display:block;
+
+margin:auto;
+
+margin-bottom:8px;
+
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+ARSENAL <span>1968</span>
+
+</div>
+
+<div class="menu">
+
+<button>Início</button>
+
+<button>Categorias</button>
+
+<button id="btnOficina">
+    Oficina
+</button>
+
+<button>Sobre</button>
+
+</div>
+
+</header>
+
+<main>
+
+<section class="hero">
+
+
+
+</section>
+
+<section class="search-area">
+
+<input
+type="text"
+class="search"
+placeholder="Pesquisar arma...">
+
+<select class="filter">
+
+<option>Todas</option>
+
+<option>Revólveres</option>
+
+<option>Pistolas</option>
+
+<option>Fuzis</option>
+
+<option>Submetralhadoras</option>
+
+<option>Escopetas</option>
+
+<option>Metralhadoras</option>
+
+<option>Snipers</option>
+
+<option>Explosivos</option>
+
+<option>Armas Brancas</option>
+
+</select>
+
+</section>
+
+<section class="stats">
+
+<div class="stat">
+
+<h2 id="totalArmas">100</h2>
+
+<p>Armas Catalogadas</p>
+
+</div>
+
+<div class="stat">
+
+<h2>9</h2>
+
+<p>Categorias</p>
+
+</div>
+
+</section>
+
+<section id="cards" class="cards">
+
+</section>
+
+<section id="oficina" style="display:none;">
+
+    <div id="oficinaLista">
+
+        <h2>🛠 Oficina de Armamentos</h2>
+    
+        <input
+            type="text"
+            id="pesquisaOficina"
+            placeholder="Pesquisar arma...">
+    
+        <div id="listaArmasOficina"></div>
+    
+    </div>
+    <div id="oficinaFicha" style="display:none;">
+
+        <button id="voltarLista">
+    
+            ⬅ Voltar
+    
+        </button>
+    
+        <img id="oficinaImagem" src="">
+    
+        <h2 id="oficinaNome"></h2>
+    
+        <p id="oficinaCategoria"></p>
+    
+        <p id="oficinaLicenca"></p>
+    
+        <div id="statusArma"></div>
+    
+        <hr>
+    
+        <h3>Acessórios</h3>
+    
+        <div id="listaAcessorios"></div>
+    
+        <button id="salvarConfiguracao">
+    
+            Aplicar Modificações
+    
+        </button>
+    
+    </div>
+
+    
+
+</section>
+
+</main>
+
+<!-- MODAL -->
+    
+    <div class="modal" id="modal">
+    
+    <div class="modal-content">
+    
+    <span class="close" onclick="fecharModal()">
+    ×
+    </span>
+    
+    <img
+    id="modalImagem"
+    src="">
+    
+    <div class="modal-body">
+    
+    <h2 id="modalTitulo"></h2>
+    
+    <p id="modalDescricao"></p>
+    
+    <p><strong>Calibre:</strong>
+    <span id="modalCalibre"></span></p>
+    
+    <p><strong>Categoria:</strong>
+    <span id="modalCategoria"></span></p>
+    
+    <p><strong>Dano (OP):</strong>
+    <span id="modalDano"></span></p>
+    
+    <p><strong>Crítico:</strong>
+    <span id="modalCritico"></span></p>
+    
+    <p><strong>Espaços:</strong>
+    <span id="modalEspacos"></span></p>
+    
+    <p><strong>Peso:</strong>
+    <span id="modalPeso"></span></p>
+    
+    <p><strong>País de Origem:</strong>
+    <span id="modalPais"></span></p>
+    
+    <p><strong>Ano:</strong>
+    <span id="modalAno"></span></p>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    <script>
+    const armas = [
+    
+    {
+    
+    nome:"Colt M1911",
+    
+    imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/M1911A1.png/960px-M1911A1.png",
+    
+    descricao:"Pistola semiautomática americana utilizada por diversos exércitos ao redor do mundo.",
+    
+    calibre:".45 ACP",
+    
+    categoria:"Pistola",
+    
+    dano:"2d6",
+    
+    critico:"19/x2",
+    
+    espacos:"1",
+    
+    peso:"1,1 kg",
+    
+    pais:"Estados Unidos",
+    
+    ano:"1911"
+    
+    },
+    
+    {
+    
+    nome:"AK-47",
+    
+    imagem:"https://upload.wikimedia.org/wikipedia/commons/f/f6/AK-47_assault_rifle.jpg",
+    
+    descricao:"Fuzil de assalto soviético conhecido pela resistência em qualquer ambiente.",
+    
+    calibre:"7.62×39mm",
+    
+    categoria:"Fuzil",
+    
+    dano:"2d10",
+    
+    critico:"20/x2",
+    
+    espacos:"2",
+    
+    peso:"4,3 kg",
+    
+    pais:"União Soviética",
+    
+    ano:"1947"
+    
+    },
+    
+    {
+    
+    nome:"M16A1",
+    
+    imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/M16A1_brimob.jpg/960px-M16A1_brimob.jpg",
+    
+    descricao:"Versão utilizada pelos Estados Unidos durante a Guerra do Vietnã.",
+    
+    calibre:"5.56 NATO",
+    
+    categoria:"Fuzil",
+    
+    dano:"2d10",
+    
+    critico:"19/x2",
+    
+    espacos:"2",
+    
+    peso:"3,3 kg",
+    
+    pais:"Estados Unidos",
+    
+    ano:"1964"
+    
+    },
+    {
+
+nome:"MP40",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Maschinenpistole_MP40.jpg/1280px-Maschinenpistole_MP40.jpg",
+
+descricao:"Submetralhadora alemã muito utilizada durante a Segunda Guerra Mundial e ainda presente em diversos conflitos posteriores.",
+
+calibre:"9×19mm",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"3,9 kg",
+
+pais:"Alemanha",
+
+ano:"1940"
+
+},
+
+{
+
+nome:"Remington 870",
+
+imagem:"https://www.remarms.com/assets/imagesRA/870%20Wingmaster/870%20Wingmaster_Right%20profile.png",
+
+descricao:"Escopeta de repetição extremamente confiável, usada por forças policiais e militares.",
+
+calibre:"12 Gauge",
+
+categoria:"Escopeta",
+
+dano:"4d6",
+
+critico:"20/x3",
+
+espacos:"2",
+
+peso:"3,2 kg",
+
+pais:"Estados Unidos",
+
+ano:"1950"
+
+},
+
+{
+
+nome:"FN FAL",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/FN-FAL_belgian.jpeg/960px-FN-FAL_belgian.jpeg",
+
+descricao:"Conhecido como 'o braço direito do mundo livre', foi adotado por dezenas de países.",
+
+calibre:"7.62×51mm NATO",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"4,4 kg",
+
+pais:"Bélgica",
+
+ano:"1953"
+
+},
+
+{
+
+nome:"Uzi",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Uzi_of_the_israeli_armed_forces.jpg/960px-Uzi_of_the_israeli_armed_forces.jpg",
+
+descricao:"Submetralhadora israelense compacta famosa por sua simplicidade e alta cadência.",
+
+calibre:"9×19mm",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"3,5 kg",
+
+pais:"Israel",
+
+ano:"1954"
+
+},
+
+{
+
+nome:"M14",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/M14_rifle_-_USA_-_7%2C62x51mm_-_Arm%C3%A9museum.jpg/960px-M14_rifle_-_USA_-_7%2C62x51mm_-_Arm%C3%A9museum.jpg",
+
+descricao:"Fuzil de batalha norte-americano utilizado antes da adoção definitiva do M16.",
+
+calibre:"7.62×51mm NATO",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"5,1 kg",
+
+pais:"Estados Unidos",
+
+ano:"1959"
+
+},
+
+{
+
+nome:"M60",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/e/e9/M60.jpg",
+
+descricao:"Metralhadora média utilizada amplamente durante a Guerra do Vietnã.",
+
+calibre:"7.62×51mm NATO",
+
+categoria:"Metralhadora",
+
+dano:"2d12",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"10,5 kg",
+
+pais:"Estados Unidos",
+
+ano:"1957"
+
+},
+
+{
+
+nome:"RPG-2",
+
+imagem:"https://www.imfdb.org/images/2/27/RPG-2_with_PG-2_rocket.jpg",
+
+descricao:"Lança-foguetes soviético portátil utilizado contra veículos blindados.",
+
+calibre:"40 mm",
+
+categoria:"Explosivo",
+
+dano:"8d6",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"4,5 kg",
+
+pais:"União Soviética",
+
+ano:"1949"
+
+},
+
+{
+
+nome:"M79",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/M79_Grenade_Launcher_%287414625716%29.jpg/1280px-M79_Grenade_Launcher_%287414625716%29.jpg",
+
+descricao:"Lança-granadas de tiro único muito utilizado pelas tropas americanas.",
+
+calibre:"40 mm",
+
+categoria:"Explosivo",
+
+dano:"6d6",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"2,7 kg",
+
+pais:"Estados Unidos",
+
+ano:"1961"
+
+},
+
+{
+
+nome:"Dragunov SVD",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/SVD_Dragunov.jpg/1280px-SVD_Dragunov.jpg",
+
+descricao:"Fuzil de precisão soviético desenvolvido para apoio de longa distância.",
+
+calibre:"7.62×54mmR",
+
+categoria:"Sniper",
+
+dano:"2d12",
+
+critico:"19/x3",
+
+espacos:"2",
+
+peso:"4,3 kg",
+
+pais:"União Soviética",
+
+ano:"1963"
+
+},
+
+{
+
+nome:"Browning Hi-Power",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/High_power_Inglis_%286971784217%29.jpg/330px-High_power_Inglis_%286971784217%29.jpg",
+
+descricao:"Pistola semiautomática de grande capacidade adotada por inúmeros exércitos.",
+
+calibre:"9×19mm",
+
+categoria:"Pistola",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,9 kg",
+
+pais:"Bélgica",
+
+ano:"1935"
+
+},
+{
+
+nome:"Thompson M1A1 ",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/ThompsonM1A1VWM.jpg/960px-ThompsonM1A1VWM.jpg",
+
+descricao:"Submetralhadora norte-americana conhecida por sua robustez e alto poder de parada.",
+
+calibre:".45 ACP",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"4,8 kg",
+
+pais:"Estados Unidos",
+
+ano:"1942"
+
+},
+
+{
+
+nome:"SKS",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Simonow_SKS_45_noBG.jpg/1280px-Simonow_SKS_45_noBG.jpg",
+
+descricao:"Carabina semiautomática soviética bastante distribuída após a Segunda Guerra Mundial.",
+
+calibre:"7.62×39mm",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"3,9 kg",
+
+pais:"União Soviética",
+
+ano:"1945"
+
+},
+
+{
+
+nome:"PPSh-41",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/PPSh-41_from_soviet.jpg/1280px-PPSh-41_from_soviet.jpg",
+
+descricao:"Submetralhadora soviética de alta cadência que permaneceu em uso por muitos anos.",
+
+calibre:"7.62×25mm Tokarev",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"3,6 kg",
+
+pais:"União Soviética",
+
+ano:"1941"
+
+},
+
+{
+
+nome:"Winchester 1897",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/97_and_Norinco.JPG/960px-97_and_Norinco.JPG",
+
+descricao:"Escopeta de ação por bomba que continuou em serviço em diversos conflitos.",
+
+calibre:"12 Gauge",
+
+categoria:"Escopeta",
+
+dano:"4d6",
+
+critico:"20/x3",
+
+espacos:"2",
+
+peso:"3,6 kg",
+
+pais:"Estados Unidos",
+
+ano:"1897"
+
+},
+
+{
+
+nome:"MG42",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/M53_%C5%A1arac.JPG/1280px-M53_%C5%A1arac.JPG",
+
+descricao:"Metralhadora alemã famosa por sua altíssima cadência de disparo.",
+
+calibre:"7.92×57mm Mauser",
+
+categoria:"Metralhadora",
+
+dano:"2d12",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"11,5 kg",
+
+pais:"Alemanha",
+
+ano:"1942"
+
+},
+
+{
+
+nome:"Carl Gustav M45",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Kpist_m_45B_Jvm21378_%28double%29.jpg/960px-Kpist_m_45B_Jvm21378_%28double%29.jpg",
+
+descricao:"Submetralhadora sueca simples, confiável e utilizada por diversas forças especiais.",
+
+calibre:"9×19mm",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"3,3 kg",
+
+pais:"Suécia",
+
+ano:"1945"
+
+},
+
+{
+
+nome:"Webley Mk IV",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Webley_IMG_6789.jpg/1280px-Webley_IMG_6789.jpg",
+
+descricao:"Revólver britânico de grande reputação utilizado por militares e policiais.",
+
+calibre:".38 S&W",
+
+categoria:"Revólver",
+
+dano:"2d6",
+
+critico:"20/x2",
+
+espacos:"1",
+
+peso:"1,1 kg",
+
+pais:"Reino Unido",
+
+ano:"1932"
+
+},
+
+{
+
+nome:"Luger P08",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Luger_IMG_6768-retouched.jpg/960px-Luger_IMG_6768-retouched.jpg",
+
+descricao:"Pistola alemã histórica ainda encontrada em arsenais e coleções militares.",
+
+calibre:"9×19mm",
+
+categoria:"Pistola",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,87 kg",
+
+pais:"Alemanha",
+
+ano:"1908"
+
+},
+
+{
+
+nome:"M3 Grease Gun",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/M3-SMG.jpg/960px-M3-SMG.jpg",
+
+descricao:"Submetralhadora americana de construção simples e baixo custo de fabricação.",
+
+calibre:".45 ACP",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"3,7 kg",
+
+pais:"Estados Unidos",
+
+ano:"1942"
+
+},
+
+{
+
+nome:"Sterling L2A3",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/3/3c/Sterling_SMG2.JPG",
+
+descricao:"Submetralhadora britânica compacta que substituiu gradualmente a Sten.",
+
+calibre:"9×19mm",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"2,7 kg",
+
+pais:"Reino Unido",
+
+ano:"1953"
+
+},{
+
+nome:"Lee-Enfield No.4 Mk I",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Short_Magazine_Lee-Enfield_Mk_1_%281903%29_-_UK_-_cal_303_British_-_Arm%C3%A9museum_noBG.jpg/960px-Short_Magazine_Lee-Enfield_Mk_1_%281903%29_-_UK_-_cal_303_British_-_Arm%C3%A9museum_noBG.jpg",
+
+descricao:"Fuzil britânico de ação por ferrolho conhecido por sua excelente velocidade de disparo.",
+
+calibre:".303 British",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"19/x3",
+
+espacos:"2",
+
+peso:"4,1 kg",
+
+pais:"Reino Unido",
+
+ano:"1941"
+
+},
+
+{
+
+nome:"Mosin-Nagant M91/30",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Mosin-Nagant_M1891_Dragoon_-_Ryssland_-_AM.067668.jpg/1280px-Mosin-Nagant_M1891_Dragoon_-_Ryssland_-_AM.067668.jpg",
+
+descricao:"Fuzil soviético extremamente resistente, amplamente utilizado durante décadas.",
+
+calibre:"7.62×54mmR",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"19/x3",
+
+espacos:"2",
+
+peso:"4 kg",
+
+pais:"União Soviética",
+
+ano:"1930"
+
+},
+
+{
+
+nome:"Kar98k",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/1/16/Karabiner_98_kurz.jpg",
+
+descricao:"Fuzil alemão de precisão e confiabilidade reconhecidas, ainda presente em arsenais militares após a guerra.",
+
+calibre:"7.92×57mm Mauser",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"19/x3",
+
+espacos:"2",
+
+peso:"3,9 kg",
+
+pais:"Alemanha",
+
+ano:"1935"
+
+},
+
+{
+
+nome:"M1 Garand",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/M1_Garand_rifle_USA_noBG_new.png/1280px-M1_Garand_rifle_USA_noBG_new.png",
+
+descricao:"Primeiro fuzil semiautomático adotado em larga escala por um grande exército.",
+
+calibre:".30-06 Springfield",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"4,4 kg",
+
+pais:"Estados Unidos",
+
+ano:"1936"
+
+},
+
+{
+
+nome:"Tokarev TT-33",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Tokarev_TT33_%286825679152%29.jpg/960px-Tokarev_TT33_%286825679152%29.jpg",
+
+descricao:"Pistola soviética de alta velocidade inicial e construção robusta.",
+
+calibre:"7.62×25mm Tokarev",
+
+categoria:"Pistola",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,85 kg",
+
+pais:"União Soviética",
+
+ano:"1933"
+
+},
+
+{
+
+nome:"Walther P38",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Walther_P38_%286971798779%29.jpg/960px-Walther_P38_%286971798779%29.jpg",
+
+descricao:"Pistola alemã que substituiu gradualmente a Luger P08 durante a Segunda Guerra.",
+
+calibre:"9×19mm",
+
+categoria:"Pistola",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,96 kg",
+
+pais:"Alemanha",
+
+ano:"1938"
+
+},
+
+{
+
+nome:"Sten Mk II",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Pistolet_maszynowy_STEN%2C_Muzeum_Or%C5%82a_Bia%C5%82ego.jpg/1280px-Pistolet_maszynowy_STEN%2C_Muzeum_Or%C5%82a_Bia%C5%82ego.jpg",
+
+descricao:"Submetralhadora britânica extremamente simples e barata de fabricar.",
+
+calibre:"9×19mm",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"3,2 kg",
+
+pais:"Reino Unido",
+
+ano:"1941"
+
+},
+
+{
+
+nome:"Bren Mk II",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Bren_wog.jpg/960px-Bren_wog.jpg",
+
+descricao:"Metralhadora leve britânica famosa pela precisão e confiabilidade.",
+
+calibre:".303 British",
+
+categoria:"Metralhadora",
+
+dano:"2d12",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"10,3 kg",
+
+pais:"Reino Unido",
+
+ano:"1938"
+
+},
+
+{
+
+nome:"BAR M1918A2",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Army_Heritage_Museum_B.A.R..jpg/1280px-Army_Heritage_Museum_B.A.R..jpg",
+
+descricao:"Fuzil automático de apoio utilizado pelos Estados Unidos em diversos conflitos.",
+
+calibre:".30-06 Springfield",
+
+categoria:"Metralhadora",
+
+dano:"2d12",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"8,8 kg",
+
+pais:"Estados Unidos",
+
+ano:"1918"
+
+},
+
+{
+
+nome:"Ithaca 37",
+
+imagem:"https://oldarmsofidaho.com/wp-content/uploads/2023/03/Ithaca-Model-37-Featherlight-12-Gauge-Pump-Action-Shotgun-No-Rib-scaled.jpg",
+
+descricao:"Escopeta de repetição conhecida pelo mecanismo de ejeção inferior.",
+
+calibre:"12 Gauge",
+
+categoria:"Escopeta",
+
+dano:"4d6",
+
+critico:"20/x3",
+
+espacos:"2",
+
+peso:"3,1 kg",
+
+pais:"Estados Unidos",
+
+ano:"1937"
+
+},
+{
+
+nome:"Colt Python",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Colt_Python_2020_4_inch.jpg/960px-Colt_Python_2020_4_inch.jpg",
+
+descricao:"Revólver americano famoso pela precisão, acabamento refinado e grande confiabilidade.",
+
+calibre:".357 Magnum",
+
+categoria:"Revólver",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"1,2 kg",
+
+pais:"Estados Unidos",
+
+ano:"1955"
+
+},
+
+{
+
+nome:"Smith & Wesson Model 10",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/b/bf/M%26Prevolver.jpg",
+
+descricao:"Um dos revólveres policiais mais utilizados do século XX.",
+
+calibre:".38 Special",
+
+categoria:"Revólver",
+
+dano:"2d6",
+
+critico:"20/x2",
+
+espacos:"1",
+
+peso:"1 kg",
+
+pais:"Estados Unidos",
+
+ano:"1899"
+
+},
+
+{
+
+nome:"Beretta M1951",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Beretta1951.JPG/960px-Beretta1951.JPG",
+
+descricao:"Pistola italiana desenvolvida para substituir modelos antigos das forças armadas.",
+
+calibre:"9×19mm",
+
+categoria:"Pistola",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,87 kg",
+
+pais:"Itália",
+
+ano:"1951"
+
+},
+
+{
+
+nome:"Beretta M12",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/d/df/Beretta_mod12s_scheda.jpg",
+
+descricao:"Submetralhadora italiana compacta utilizada por forças militares e policiais.",
+
+calibre:"9×19mm",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"3,2 kg",
+
+pais:"Itália",
+
+ano:"1959"
+
+},
+
+{
+
+nome:"SIG SG 510",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/F_ass_57.JPG/1280px-F_ass_57.JPG",
+
+descricao:"Fuzil suíço conhecido pela precisão e construção extremamente resistente.",
+
+calibre:"7.5×55mm Swiss",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"4,3 kg",
+
+pais:"Suíça",
+
+ano:"1958"
+
+},
+
+{
+
+nome:"Heckler & Koch G3",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Heckler_%26_Koch_G3_Kunststoffschaft_Display_noBG.png/1280px-Heckler_%26_Koch_G3_Kunststoffschaft_Display_noBG.png",
+
+descricao:"Fuzil alemão desenvolvido no período da Guerra Fria e adotado por diversos países.",
+
+calibre:"7.62×51mm NATO",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"4,4 kg",
+
+pais:"Alemanha Ocidental",
+
+ano:"1959"
+
+},
+
+{
+
+nome:"FN MAG",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/FN_MAG_Machine_Gun_Left.jpg/960px-FN_MAG_Machine_Gun_Left.jpg",
+
+descricao:"Metralhadora de uso geral belga que se tornou uma das mais utilizadas no mundo.",
+
+calibre:"7.62×51mm NATO",
+
+categoria:"Metralhadora",
+
+dano:"2d12",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"11,8 kg",
+
+pais:"Bélgica",
+
+ano:"1958"
+
+},
+
+{
+
+nome:"Browning M1919A4",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Machinegeweer_Browning_.30_van_de_andere_zijde_bezien_%282155_047351%29.jpg/960px-Machinegeweer_Browning_.30_van_de_andere_zijde_bezien_%282155_047351%29.jpg",
+
+descricao:"Metralhadora pesada utilizada pelas forças americanas durante décadas.",
+
+calibre:".30-06 Springfield",
+
+categoria:"Metralhadora",
+
+dano:"2d12",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"14 kg",
+
+pais:"Estados Unidos",
+
+ano:"1919"
+
+},
+
+{
+
+nome:"M2 Browning",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/PEO_Browning_M2E2_QCB_%28c1%29.jpg/1280px-PEO_Browning_M2E2_QCB_%28c1%29.jpg",
+
+descricao:"Metralhadora pesada calibre .50 utilizada em veículos e posições defensivas.",
+
+calibre:".50 BMG",
+
+categoria:"Metralhadora Pesada",
+
+dano:"3d12",
+
+critico:"20/x3",
+
+espacos:"4",
+
+peso:"38 kg",
+
+pais:"Estados Unidos",
+
+ano:"1933"
+
+},
+
+{
+
+nome:"Ruger Standard",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Ruger_Standard_Pistol_wood_grips.jpg/960px-Ruger_Standard_Pistol_wood_grips.jpg",
+
+descricao:"Pistola esportiva americana que também apareceu em uso civil e treinamento.",
+
+calibre:".22 LR",
+
+categoria:"Pistola",
+
+dano:"1d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,9 kg",
+
+pais:"Estados Unidos",
+
+ano:"1949"
+
+},
+{
+
+nome:"CZ 52",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/CZ_52_pistol.jpg/330px-CZ_52_pistol.jpg",
+
+descricao:"Pistola tchecoslovaca de alta velocidade utilizando munição de grande desempenho.",
+
+calibre:"7.62×25mm Tokarev",
+
+categoria:"Pistola",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,95 kg",
+
+pais:"Tchecoslováquia",
+
+ano:"1952"
+
+},
+
+{
+
+nome:"CZ 61 Skorpion",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Sa_vz._61_%C5%A0korpion.jpg/330px-Sa_vz._61_%C5%A0korpion.jpg",
+
+descricao:"Pistola-metralhadora compacta desenvolvida para tropas especiais e unidades de segurança.",
+
+calibre:".32 ACP",
+
+categoria:"Submetralhadora",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"1,28 kg",
+
+pais:"Tchecoslováquia",
+
+ano:"1961"
+
+},
+
+{
+
+nome:"MAT-49",
+
+imagem:"https://p.turbosquid.com/ts-thumb/ph/IfswtQ/OM/mat_49_main1/png/1629500546/1920x1080/fit_q87/a7414da5ca5cfc9ef234f8dee4cdf52c0fe824ee/mat_49_main1.jpg",
+
+descricao:"Submetralhadora francesa utilizada durante conflitos coloniais e operações militares.",
+
+calibre:"9×19mm",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"3,5 kg",
+
+pais:"França",
+
+ano:"1949"
+
+},
+
+{
+
+nome:"MAS-49",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/5/5b/MAS_49_crop.jpg",
+
+descricao:"Fuzil semiautomático francês utilizado após a Segunda Guerra Mundial.",
+
+calibre:"7.5×54mm French",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"4,7 kg",
+
+pais:"França",
+
+ano:"1949"
+
+},
+
+{
+
+nome:"MAS-49/56",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/MAS_49_56.JPG/1280px-MAS_49_56.JPG",
+
+descricao:"Versão modernizada do MAS-49 usada pelo exército francês durante a Guerra Fria.",
+
+calibre:"7.5×54mm French",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"4,1 kg",
+
+pais:"França",
+
+ano:"1956"
+
+},
+
+{
+
+nome:"Vickers Machine Gun",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Vickers_Machine_Gun_YORCM_CA78ac_%28cropped%29.jpg/960px-Vickers_Machine_Gun_YORCM_CA78ac_%28cropped%29.jpg",
+
+descricao:"Metralhadora britânica refrigerada a água conhecida pela enorme resistência.",
+
+calibre:".303 British",
+
+categoria:"Metralhadora",
+
+dano:"2d12",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"15 kg",
+
+pais:"Reino Unido",
+
+ano:"1912"
+
+},
+
+{
+
+nome:"DP-28",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/1/13/Machine_gun_DP_MON.jpg",
+
+descricao:"Metralhadora leve soviética com carregador em formato de disco.",
+
+calibre:"7.62×54mmR",
+
+categoria:"Metralhadora",
+
+dano:"2d12",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"9,12 kg",
+
+pais:"União Soviética",
+
+ano:"1928"
+
+},
+
+{
+
+nome:"RPK",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/7.62mm_light_machine_gun_RPK.png/960px-7.62mm_light_machine_gun_RPK.png",
+
+descricao:"Metralhadora leve soviética baseada na plataforma AK.",
+
+calibre:"7.62×39mm",
+
+categoria:"Metralhadora Leve",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"4,8 kg",
+
+pais:"União Soviética",
+
+ano:"1961"
+
+},
+
+{
+
+nome:"Madsen M-50",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Submachine_Guns_%289885170076%29_%28cropped%29.jpg/960px-Submachine_Guns_%289885170076%29_%28cropped%29.jpg",
+
+descricao:"Submetralhadora dinamarquesa com design incomum e construção metálica.",
+
+calibre:"9×19mm",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"3,3 kg",
+
+pais:"Dinamarca",
+
+ano:"1950"
+
+},
+
+{
+
+nome:"Sterling L34A1",
+
+imagem:"https://auctions.morphyauctions.com/ItemImages/000475/19121041_1_lg.jpeg",
+
+descricao:"Versão com supressor integrada da Sterling usada por forças especiais.",
+
+calibre:"9×19mm",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"3,7 kg",
+
+pais:"Reino Unido",
+
+ano:"1966"
+
+},{
+
+nome:"FN Model 1949",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/8/8f/FN_Model_1949-transparent.png",
+
+descricao:"Fuzil semiautomático belga desenvolvido após a Segunda Guerra Mundial.",
+
+calibre:"7.65×53mm",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"4,3 kg",
+
+pais:"Bélgica",
+
+ano:"1949"
+
+},
+
+{
+
+nome:"ArmaLite AR-10",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/AR10_Armalite_vue_d%27ensemble_Bajonett_noBG.jpg/1920px-AR10_Armalite_vue_d%27ensemble_Bajonett_noBG.jpg",
+
+descricao:"Fuzil experimental que serviu de base para o desenvolvimento do M16.",
+
+calibre:"7.62×51mm NATO",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"3,3 kg",
+
+pais:"Estados Unidos",
+
+ano:"1956"
+
+},
+
+{
+
+nome:"FN CAL",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/9/9d/FN_CAL_close1.JPG",
+
+descricao:"Primeiro fuzil de assalto belga produzido em calibre intermediário.",
+
+calibre:"5.56×45mm",
+
+categoria:"Fuzil",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"3,3 kg",
+
+pais:"Bélgica",
+
+ano:"1966"
+
+},
+
+{
+
+nome:"HK G41",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/HK_G41_%282%29.jpg/1920px-HK_G41_%282%29.jpg",
+
+descricao:"Projeto alemão desenvolvido posteriormente baseado na família G3.",
+
+calibre:"5.56 NATO",
+
+categoria:"Fuzil",
+
+dano:"2d8",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"4,1 kg",
+
+pais:"Alemanha Ocidental",
+
+ano:"1960"
+
+},
+
+{
+
+nome:"Vz. 58",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Sa_58-JH01.jpg/1920px-Sa_58-JH01.jpg",
+
+descricao:"Fuzil de assalto tchecoslovaco criado durante a Guerra Fria.",
+
+calibre:"7.62×39mm",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"3,6 kg",
+
+pais:"Tchecoslováquia",
+
+ano:"1958"
+
+},
+
+{
+
+nome:"Astra 400",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Left_side_of_Astra_400_pistol.jpg/960px-Left_side_of_Astra_400_pistol.jpg",
+
+descricao:"Pistola espanhola de grande porte utilizada por forças militares.",
+
+calibre:"9mm Largo",
+
+categoria:"Pistola",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"1,03 kg",
+
+pais:"Espanha",
+
+ano:"1921"
+
+},
+
+{
+
+nome:"Star Model B",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Star_9_mm_%286825678592%29.jpg/960px-Star_9_mm_%286825678592%29.jpg",
+
+descricao:"Pistola espanhola inspirada no desenho da Colt 1911.",
+
+calibre:"9×19mm",
+
+categoria:"Pistola",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"1 kg",
+
+pais:"Espanha",
+
+ano:"1928"
+
+},
+
+{
+
+nome:"LAPA FA-03",
+
+imagem:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyP3Bz7Dp_KyreQGGThuuvXW87ufyF3flxZHS0fMBREfA7pr4eYu2TFMoj7EGvFMQX7D4gcUv2ZsYEOzmYHaNv1KeOy8uPVJZ6cq4oTfUmeTTOrTQY6TcRb1MaQkXo53K1HgbvCxKrHRM/s1600/00.jpg",
+
+descricao:"Protótipo brasileiro de fuzil de assalto com configuração bullpup.",
+
+calibre:"5.56×45mm",
+
+categoria:"Fuzil",
+
+dano:"2d8",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"3,7 kg",
+
+pais:"Brasil",
+
+ano:"1970"
+
+},
+
+{
+
+nome:"IMBEL M964 FAL",
+
+imagem:"https://ammoterra.com/system/images/images/000/036/931/original/FZ762M964-dir.png",
+
+descricao:"Versão brasileira do FN FAL utilizada pelas forças armadas.",
+
+calibre:"7.62×51mm NATO",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"4,3 kg",
+
+pais:"Brasil",
+
+ano:"1964"
+
+},
+
+{
+
+nome:"Mauser C96",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Mauser_C96_7%2C63_%286971794467%29.jpg/960px-Mauser_C96_7%2C63_%286971794467%29.jpg",
+
+descricao:"Pistola alemã histórica conhecida pelo carregador interno e coronha destacável.",
+
+calibre:"7.63 Mauser",
+
+categoria:"Pistola",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"1,25 kg",
+
+pais:"Alemanha",
+
+ano:"1896"
+
+},{
+
+nome:"Colt M1917",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/M1917_Revolver_issued_by_US_Army_during_WWI_to_Charles_H._HoustonN_MAAHC-2018_59_3_001.jpg/960px-M1917_Revolver_issued_by_US_Army_during_WWI_to_Charles_H._HoustonN_MAAHC-2018_59_3_001.jpg",
+
+descricao:"Revólver americano desenvolvido para uso militar durante a Primeira Guerra Mundial e mantido em serviço posteriormente.",
+
+calibre:".45 ACP",
+
+categoria:"Revólver",
+
+dano:"2d8",
+
+critico:"20/x2",
+
+espacos:"1",
+
+peso:"1,1 kg",
+
+pais:"Estados Unidos",
+
+ano:"1917"
+
+},
+
+{
+
+nome:"Enfield No.2 Mk I",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Enfield-No2.jpg/960px-Enfield-No2.jpg",
+
+descricao:"Revólver britânico utilizado por forças militares durante a Segunda Guerra Mundial.",
+
+calibre:".38 S&W",
+
+categoria:"Revólver",
+
+dano:"2d6",
+
+critico:"20/x2",
+
+espacos:"1",
+
+peso:"0,76 kg",
+
+pais:"Reino Unido",
+
+ano:"1932"
+
+},
+
+{
+
+nome:"Nambu Type 14",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Nambu_pistol-IMG_6531-white.jpg/960px-Nambu_pistol-IMG_6531-white.jpg",
+
+descricao:"Pistola japonesa utilizada principalmente por oficiais durante a Segunda Guerra Mundial.",
+
+calibre:"8mm Nambu",
+
+categoria:"Pistola",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,91 kg",
+
+pais:"Japão",
+
+ano:"1925"
+
+},
+
+{
+
+nome:"Arisaka Type 38",
+
+imagem:"https://images.gunsinternational.com/listings_sub/acc_70986/gi_101061421/WW2-Japanese-Type-38-Arisaka-Rifle-in-6-5-Jap-w-Intact-Mum_101061421_70986_033EBD69BAA377BD.JPG",
+
+descricao:"Fuzil japonês de ferrolho conhecido pela precisão e resistência.",
+
+calibre:"6.5×50mm",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"19/x3",
+
+espacos:"2",
+
+peso:"3,95 kg",
+
+pais:"Japão",
+
+ano:"1905"
+
+},
+
+{
+
+nome:"Arisaka Type 99",
+
+imagem:"https://images.gunsinternational.com/listings_sub/acc_70986/gi_101094371/WW2-Arisaka-Type-99-Sniper-Rifle-in-7-7-Jap-Caliber-w-Original-4-Power-NTC-Kogaku-Scope_101094371_70986_8CFE038AA812D083.JPG",
+
+descricao:"Versão modernizada do fuzil japonês Arisaka utilizada na Segunda Guerra.",
+
+calibre:"7.7×58mm",
+
+categoria:"Fuzil",
+
+dano:"2d10",
+
+critico:"19/x3",
+
+espacos:"2",
+
+peso:"3,8 kg",
+
+pais:"Japão",
+
+ano:"1939"
+
+},
+
+{
+
+nome:"Browning Auto-5",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/6/6f/RemingtonMd11.JPG",
+
+descricao:"Escopeta semiautomática projetada por John Browning e usada por décadas.",
+
+calibre:"12 Gauge",
+
+categoria:"Escopeta",
+
+dano:"4d6",
+
+critico:"20/x3",
+
+espacos:"2",
+
+peso:"4 kg",
+
+pais:"Bélgica",
+
+ano:"1902"
+
+},
+
+{
+
+nome:"Mossberg 500",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/PEO_Mossberg_590A1.jpg/1280px-PEO_Mossberg_590A1.jpg",
+
+descricao:"Escopeta de ação por bomba extremamente popular entre forças policiais.",
+
+calibre:"12 Gauge",
+
+categoria:"Escopeta",
+
+dano:"4d6",
+
+critico:"20/x3",
+
+espacos:"2",
+
+peso:"3,3 kg",
+
+pais:"Estados Unidos",
+
+ano:"1961"
+
+},
+
+{
+
+nome:"Winchester Model 70",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Winchestermodel70.jpg/1280px-Winchestermodel70.jpg",
+
+descricao:"Rifle de precisão conhecido pela qualidade do mecanismo de ferrolho.",
+
+calibre:".308 Winchester",
+
+categoria:"Sniper",
+
+dano:"2d12",
+
+critico:"19/x3",
+
+espacos:"2",
+
+peso:"3,5 kg",
+
+pais:"Estados Unidos",
+
+ano:"1936"
+
+},
+
+{
+
+nome:"Remington Model 700",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/c/cb/Remington_Model_700.JPG",
+
+descricao:"Rifle de precisão utilizado por atiradores militares e policiais.",
+
+calibre:".308 Winchester",
+
+categoria:"Sniper",
+
+dano:"2d12",
+
+critico:"19/x3",
+
+espacos:"2",
+
+peso:"3,4 kg",
+
+pais:"Estados Unidos",
+
+ano:"1962"
+
+},
+
+{
+
+nome:"M1 Carbine",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/b/b9/WWII_M1_Carbine.jpg",
+
+descricao:"Carabina leve americana utilizada por tropas de apoio e oficiais.",
+
+calibre:".30 Carbine",
+
+categoria:"Carabina",
+
+dano:"2d8",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"2,4 kg",
+
+pais:"Estados Unidos",
+
+ano:"1942"
+
+},{
+
+nome:"M3 Browning Aircraft Gun",
+
+imagem:"https://auctions.morphyauctions.com/ItemImages/000653/25140889_1_med.jpeg",
+
+descricao:"Metralhadora de aeronave utilizada pelos Estados Unidos em plataformas aéreas e veículos.",
+
+calibre:".50 BMG",
+
+categoria:"Metralhadora Pesada",
+
+dano:"3d12",
+
+critico:"20/x3",
+
+espacos:"4",
+
+peso:"29 kg",
+
+pais:"Estados Unidos",
+
+ano:"1943"
+
+},
+
+{
+
+nome:"FG 42",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/1/1a/FG42.jpg",
+
+descricao:"Fuzil automático alemão criado para tropas paraquedistas.",
+
+calibre:"7.92×57mm Mauser",
+
+categoria:"Fuzil Automático",
+
+dano:"2d12",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"4,95 kg",
+
+pais:"Alemanha",
+
+ano:"1942"
+
+},
+
+{
+
+nome:"StG 44",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Sturmgewehr44_noBG.jpg/960px-Sturmgewehr44_noBG.jpg",
+
+descricao:"Um dos primeiros fuzis de assalto modernos, influenciando projetos futuros.",
+
+calibre:"7.92×33mm Kurz",
+
+categoria:"Fuzil de Assalto",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"5,22 kg",
+
+pais:"Alemanha",
+
+ano:"1944"
+
+},
+
+{
+
+nome:"PPS-43",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/d/d3/PPS43.jpg",
+
+descricao:"Submetralhadora soviética compacta produzida em grande quantidade.",
+
+calibre:"7.62×25mm Tokarev",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"3,6 kg",
+
+pais:"União Soviética",
+
+ano:"1943"
+
+},
+
+{
+
+nome:"Vz. 61 Skorpion",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Sa_vz._61_%C5%A0korpion.jpg/1280px-Sa_vz._61_%C5%A0korpion.jpg",
+
+descricao:"Arma automática compacta criada para equipes especiais e segurança.",
+
+calibre:".32 ACP",
+
+categoria:"Submetralhadora",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"1,28 kg",
+
+pais:"Tchecoslováquia",
+
+ano:"1961"
+
+},
+
+{
+
+nome:"Walther PP",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/1/12/1972_Walther_PP.jpg",
+
+descricao:"Pistola compacta alemã muito usada por policiais e agentes.",
+
+calibre:"7.65mm Browning",
+
+categoria:"Pistola",
+
+dano:"1d8",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,66 kg",
+
+pais:"Alemanha",
+
+ano:"1929"
+
+},
+
+{
+
+nome:"Browning M1919A6",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/HAFm_Browning_30_cal_7089.JPG/960px-HAFm_Browning_30_cal_7089.JPG",
+
+descricao:"Versão portátil da metralhadora Browning adaptada para infantaria.",
+
+calibre:".30-06 Springfield",
+
+categoria:"Metralhadora Leve",
+
+dano:"2d12",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"14 kg",
+
+pais:"Estados Unidos",
+
+ano:"1943"
+
+},
+
+{
+
+nome:"Lahti L-35",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Lahti_L-35-1.jpg/960px-Lahti_L-35-1.jpg",
+
+descricao:"Pistola finlandesa desenvolvida para funcionar em condições extremas.",
+
+calibre:"9×19mm",
+
+categoria:"Pistola",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"1,2 kg",
+
+pais:"Finlândia",
+
+ano:"1935"
+
+},
+
+{
+
+nome:"Suomi KP/-31",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Suomi_submachine_gun_M31_1_%281%29.jpg/1920px-Suomi_submachine_gun_M31_1_%281%29.jpg",
+
+descricao:"Submetralhadora finlandesa famosa pela precisão e qualidade.",
+
+calibre:"9×19mm",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"4,6 kg",
+
+pais:"Finlândia",
+
+ano:"1931"
+
+},
+
+{
+
+nome:"Glock 17",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Glock_17_%286825676904%29_%D0%B1%D0%B5%D0%B7_%D1%84%D0%BE%D0%BD%D0%B0.jpg/960px-Glock_17_%286825676904%29_%D0%B1%D0%B5%D0%B7_%D1%84%D0%BE%D0%BD%D0%B0.jpg",
+
+descricao:"Pistola austríaca revolucionária com estrutura de polímero. Entrou em serviço após 1968, sendo incluída apenas como referência futura.",
+
+calibre:"9×19mm",
+
+categoria:"Pistola",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,9 kg",
+
+pais:"Áustria",
+
+ano:"1982"
+
+},{
+
+nome:"SIG P210",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/SIG_210-2_%286825677804%29.jpg/960px-SIG_210-2_%286825677804%29.jpg",
+
+descricao:"Pistola suíça conhecida pela extrema precisão e qualidade de fabricação.",
+
+calibre:"9×19mm",
+
+categoria:"Pistola",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,97 kg",
+
+pais:"Suíça",
+
+ano:"1949"
+
+},
+
+{
+
+nome:"Colt Cobra",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Cobra_38spl.jpg/960px-Cobra_38spl.jpg",
+
+descricao:"Revólver leve utilizado por agentes, policiais e forças de segurança.",
+
+calibre:".38 Special",
+
+categoria:"Revólver",
+
+dano:"2d6",
+
+critico:"20/x2",
+
+espacos:"1",
+
+peso:"0,58 kg",
+
+pais:"Estados Unidos",
+
+ano:"1950"
+
+},
+
+{
+
+nome:"Ruger Mark I",
+
+imagem:"https://images.gunsinternational.com/listings_sub/acc_142788/gi_101978978/Ruger-Mark-I_101978978_142788_BEC0027BE01F0C67.JPG",
+
+descricao:"Pistola semiautomática esportiva utilizada também para treinamento.",
+
+calibre:".22 LR",
+
+categoria:"Pistola",
+
+dano:"1d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"1 kg",
+
+pais:"Estados Unidos",
+
+ano:"1949"
+
+},
+
+{
+
+nome:"Savage 24",
+
+imagem:"https://dygtyjqp7pi0m.cloudfront.net/i/59762/48160301_1m.jpg",
+
+descricao:"Arma combinada com cano de espingarda e rifle, usada para sobrevivência.",
+
+calibre:".22 LR / 20 Gauge",
+
+categoria:"Arma Combinada",
+
+dano:"3d6",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"3,1 kg",
+
+pais:"Estados Unidos",
+
+ano:"1950"
+
+},
+
+{
+
+nome:"Izhmash AKM",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/AKM_automatkarbin_Ryssland_-_7%2C62x39mm_-_Arm%C3%A9museum_bothsides_noBG.png/960px-AKM_automatkarbin_Ryssland_-_7%2C62x39mm_-_Arm%C3%A9museum_bothsides_noBG.png",
+
+descricao:"Modernização do AK-47 com melhorias de fabricação e redução de peso.",
+
+calibre:"7.62×39mm",
+
+categoria:"Fuzil de Assalto",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"3,1 kg",
+
+pais:"União Soviética",
+
+ano:"1959"
+
+},
+
+{
+
+nome:"RPK-74",
+
+imagem:"https://www.giantbomb.com/a/uploads/original/1/13313/1170159-soviet_rpk_74.jpeg",
+
+descricao:"Metralhadora leve baseada na família AK para apoio de esquadrão.",
+
+calibre:"5.45×39mm",
+
+categoria:"Metralhadora Leve",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"5 kg",
+
+pais:"União Soviética",
+
+ano:"1974"
+
+},
+
+{
+
+nome:"Mossberg 590",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/d/dc/Shotgun_Mossberg_590.jpg",
+
+descricao:"Escopeta de ação por bomba derivada da Mossberg 500.",
+
+calibre:"12 Gauge",
+
+categoria:"Escopeta",
+
+dano:"4d6",
+
+critico:"20/x3",
+
+espacos:"2",
+
+peso:"3,6 kg",
+
+pais:"Estados Unidos",
+
+ano:"1961"
+
+},
+
+{
+
+nome:"Remington 11-48",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Remington_11-48.jpg/1920px-Remington_11-48.jpg",
+
+descricao:"Escopeta semiautomática utilizada para caça e aplicações policiais.",
+
+calibre:"12 Gauge",
+
+categoria:"Escopeta",
+
+dano:"4d6",
+
+critico:"20/x3",
+
+espacos:"2",
+
+peso:"3,5 kg",
+
+pais:"Estados Unidos",
+
+ano:"1948"
+
+},
+
+{
+
+nome:"Colt Commando M733",
+
+imagem:"https://www.kotte-zeller.de/$WS/kotte-zeller-shop/websale8_shop-kotte-zeller-shop/produkte/medien/bilder/normal/495566_5.jpg",
+
+descricao:"Carabina compacta derivada da família M16 para operações especiais.",
+
+calibre:"5.56×45mm",
+
+categoria:"Carabina",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"2,9 kg",
+
+pais:"Estados Unidos",
+
+ano:"1960"
+
+},
+
+{
+
+nome:"HK33",
+
+imagem:"https://tvd.im/uploads/posts/2020/12/heckler-koch-hk-33e_4.jpg",
+
+descricao:"Fuzil alemão baseado no G3 adaptado para munição de menor calibre.",
+
+calibre:"5.56×45mm",
+
+categoria:"Fuzil",
+
+dano:"2d8",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"3,65 kg",
+
+pais:"Alemanha Ocidental",
+
+ano:"1968"
+
+},{
+
+nome:"Makarov PM",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Makarov_%2828034065%29.jpeg/960px-Makarov_%2828034065%29.jpeg",
+
+descricao:"Pistola soviética compacta criada para substituir a Tokarev TT-33.",
+
+calibre:"9×18mm Makarov",
+
+categoria:"Pistola",
+
+dano:"2d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,73 kg",
+
+pais:"União Soviética",
+
+ano:"1951"
+
+},
+
+{
+
+nome:"FN Minimi",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/FN_MINIMI_Standard_Right.jpg/1920px-FN_MINIMI_Standard_Right.jpg",
+
+descricao:"Metralhadora leve belga desenvolvida para fornecer alto volume de fogo.",
+
+calibre:"5.56×45mm",
+
+categoria:"Metralhadora Leve",
+
+dano:"2d10",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"7,1 kg",
+
+pais:"Bélgica",
+
+ano:"1968"
+
+},
+
+{
+
+nome:"PP-19 Bizon",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/PP-19_%28348-08%29.jpg/1280px-PP-19_%28348-08%29.jpg",
+
+descricao:"Submetralhadora russa de projeto posterior, incluída como referência futura.",
+
+calibre:"9×18mm",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"2,7 kg",
+
+pais:"Rússia",
+
+ano:"1993"
+
+},
+
+{
+
+nome:"Colt AR-15",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/1973_Colt_AR15_SP1.jpg/1920px-1973_Colt_AR15_SP1.jpg",
+
+descricao:"Plataforma de fuzil que originou o M16 utilizado pelas forças americanas.",
+
+calibre:"5.56×45mm",
+
+categoria:"Fuzil",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"3 kg",
+
+pais:"Estados Unidos",
+
+ano:"1963"
+
+},
+
+{
+
+nome:"Rheinmetall MG3",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/BundeswehrMG3_noBG.png/1920px-BundeswehrMG3_noBG.png",
+
+descricao:"Evolução alemã da MG42 adaptada para munição moderna.",
+
+calibre:"7.62×51mm NATO",
+
+categoria:"Metralhadora",
+
+dano:"2d12",
+
+critico:"20/x2",
+
+espacos:"3",
+
+peso:"11,5 kg",
+
+pais:"Alemanha Ocidental",
+
+ano:"1968"
+
+},
+
+{
+
+nome:"M67 Recoilless Rifle",
+
+imagem:"https://cdna.artstation.com/p/assets/images/images/053/647/440/large/trento-m67rr2.jpg",
+
+descricao:"Arma antiblindagem sem recuo utilizada durante a Guerra do Vietnã.",
+
+calibre:"90mm",
+
+categoria:"Antitanque",
+
+dano:"8d6",
+
+critico:"20/x3",
+
+espacos:"4",
+
+peso:"17 kg",
+
+pais:"Estados Unidos",
+
+ano:"1959"
+
+},
+
+{
+
+nome:"Carl Gustaf M2",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Carl_Gustav_M4_%281%29_%28brightened%2C_no_background%29_%28leveled%29.png/1920px-Carl_Gustav_M4_%281%29_%28brightened%2C_no_background%29_%28leveled%29.png",
+
+descricao:"Lança-foguetes sueco reutilizável usado contra veículos blindados.",
+
+calibre:"84mm",
+
+categoria:"Antitanque",
+
+dano:"8d6",
+
+critico:"20/x3",
+
+espacos:"4",
+
+peso:"14 kg",
+
+pais:"Suécia",
+
+ano:"1964"
+
+},
+
+{
+
+nome:"Uzi Mini",
+
+imagem:"https://www.deltamike.co.nz/wp-content/uploads/2024/10/IMI-Mini-Uzi-9mm-600x600.jpg",
+
+descricao:"Versão compacta da Uzi criada para maior mobilidade.",
+
+calibre:"9×19mm",
+
+categoria:"Submetralhadora",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"2,7 kg",
+
+pais:"Israel",
+
+ano:"1980"
+
+},
+
+{
+
+nome:"Ruger AC-556",
+
+imagem:"https://s1.img.bidsquare.com/item/xl/4033/4033673.jpeg",
+
+descricao:"Versão automática da carabina Ruger Mini-14.",
+
+calibre:"5.56×45mm",
+
+categoria:"Fuzil",
+
+dano:"2d8",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"3,2 kg",
+
+pais:"Estados Unidos",
+
+ano:"1973"
+
+},
+
+{
+
+nome:"Steyr AUG",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Steyr_AUG_5%2C56_mm.JPG/960px-Steyr_AUG_5%2C56_mm.JPG",
+
+descricao:"Fuzil bullpup austríaco de projeto avançado, incluído como referência futura.",
+
+calibre:"5.56×45mm",
+
+categoria:"Fuzil de Assalto",
+
+dano:"2d8",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"3,6 kg",
+
+pais:"Áustria",
+
+ano:"1977"
+
+},
+
+{
+
+nome:"Faca Militar",
+
+imagem:"https://images.tcdn.com.br/img/img_prod/883335/faca_strongarm_fine_edge_gerber_1307_2_00f2ffd2d931b23032fec544b50c6903.jpg",
+
+descricao:"Faca de combate utilizada por soldados para sobrevivência e combate corpo a corpo.",
+
+calibre:"-",
+
+categoria:"Arma Branca",
+
+dano:"1d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,45 kg",
+
+pais:"Diversos",
+
+ano:"1968",
+
+licenca:"Classe 0"
+
+},
+
+{
+
+nome:"Ka-Bar USMC",
+
+imagem:"https://www.extac.com.au/assets/full/KA1217.jpg",
+
+descricao:"Faca oficial do Corpo de Fuzileiros Navais dos Estados Unidos.",
+
+calibre:"-",
+
+categoria:"Arma Branca",
+
+dano:"1d8",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,32 kg",
+
+pais:"Estados Unidos",
+
+ano:"1942",
+
+licenca:"Classe 0"
+
+},
+
+{
+
+nome:"Punhal Fairbairn-Sykes",
+
+imagem:"https://pics.knifecenter.com/knifecenter/ixl/images/SHE006nw.jpg",
+
+descricao:"Punhal britânico desenvolvido para comandos e operações especiais.",
+
+calibre:"-",
+
+categoria:"Arma Branca",
+
+dano:"1d8",
+
+critico:"18/x2",
+
+espacos:"1",
+
+peso:"0,28 kg",
+
+pais:"Reino Unido",
+
+ano:"1941",
+
+licenca:"Classe 0"
+
+},
+
+{
+
+nome:"Baioneta M7",
+
+imagem:"https://lawranceordnance.com/pub/media/catalog/product/cache/96df3f4e4822694414a0a1fd1a638ae6/i/m/img_5958.jpg",
+
+descricao:"Baioneta utilizada no fuzil M16.",
+
+calibre:"-",
+
+categoria:"Arma Branca",
+
+dano:"1d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,30 kg",
+
+pais:"Estados Unidos",
+
+ano:"1964",
+
+licenca:"Classe 0"
+
+},
+
+{
+
+nome:"Baioneta AKM",
+
+imagem:"https://http2.mlstatic.com/D_NQ_NP_974185-MLB74055871469_012024-O.webp",
+
+descricao:"Baioneta utilizada nos fuzis AKM.",
+
+calibre:"-",
+
+categoria:"Arma Branca",
+
+dano:"1d6",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,31 kg",
+
+pais:"União Soviética",
+
+ano:"1959",
+
+licenca:"Classe 0"
+
+},
+
+{
+
+nome:"Machete Militar",
+
+imagem:"https://thumbs.worthpoint.com/zoom/images1/1/0416/04/vintage-military-1968-vietnam-era_1_4a2e83291daba196b90b5309fb1099e7.jpg",
+
+descricao:"Lâmina longa utilizada em selvas e ambientes fechados.",
+
+calibre:"-",
+
+categoria:"Arma Branca",
+
+dano:"1d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"0,65 kg",
+
+pais:"Diversos",
+
+ano:"1968",
+
+licenca:"Classe 0"
+
+},
+
+{
+
+nome:"Facão de Mato",
+
+imagem:"https://telaseggert.com.br/wp-content/uploads/2023/04/Facao-fora.jpg",
+
+descricao:"Ferramenta adaptada para combate e abertura de trilhas.",
+
+calibre:"-",
+
+categoria:"Arma Branca",
+
+dano:"1d10",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"0,70 kg",
+
+pais:"Brasil",
+
+ano:"1968",
+
+licenca:"Classe 0"
+
+},
+
+{
+
+nome:"Kukri",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/4/47/Kukri%2C_karda_%26_chakmak.jpg",
+
+descricao:"Lâmina tradicional nepalesa usada pelos Gurkhas.",
+
+calibre:"-",
+
+categoria:"Arma Branca",
+
+dano:"1d10",
+
+critico:"19/x2",
+
+espacos:"2",
+
+peso:"0,60 kg",
+
+pais:"Nepal",
+
+ano:"1920",
+
+licenca:"Classe 0"
+
+},
+
+{
+
+nome:"Machado de Bombeiro",
+
+imagem:"https://hasicdistribuidora.com.br/wp-content/uploads/2020/02/machado-para-bombeiro-combate-a-incendio-estrutural-hasic.jpg",
+
+descricao:"Ferramenta pesada utilizada também como arma improvisada.",
+
+calibre:"-",
+
+categoria:"Arma Branca",
+
+dano:"1d12",
+
+critico:"20/x3",
+
+espacos:"2",
+
+peso:"1,5 kg",
+
+pais:"Estados Unidos",
+
+ano:"1968",
+
+licenca:"Classe 0"
+
+},
+
+{
+
+nome:"Pé de Cabra",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/8/85/Pince_monseigneur.jpg",
+
+descricao:"Ferramenta metálica utilizada para arrombamentos e combate.",
+
+calibre:"-",
+
+categoria:"Arma Branca",
+
+dano:"1d8",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"1,2 kg",
+
+pais:"Diversos",
+
+ano:"1968",
+
+licenca:"Classe 0"
+
+},
+
+{
+
+nome:"Pá Entrincheiradora",
+
+imagem:"https://http2.mlstatic.com/D_NQ_NP_881772-MLB71460751405_092023-O-pa-de-trincheira-t-handle-m1910-segunda-guerra-mundial.webp",
+
+descricao:"Ferramenta militar multifuncional utilizada em combate próximo.",
+
+calibre:"-",
+
+categoria:"Arma Branca",
+
+dano:"1d8",
+
+critico:"20/x2",
+
+espacos:"2",
+
+peso:"1 kg",
+
+pais:"União Soviética",
+
+ano:"1968",
+
+licenca:"Classe 0"
+
+},
+
+{
+
+nome:"Canivete Militar",
+
+imagem:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Swiss_army_knife_open_20050612_%28cropped%29.jpg/1280px-Swiss_army_knife_open_20050612_%28cropped%29.jpg",
+
+descricao:"Canivete dobrável utilizado por soldados em campo.",
+
+calibre:"-",
+
+categoria:"Arma Branca",
+
+dano:"1d4",
+
+critico:"19/x2",
+
+espacos:"1",
+
+peso:"0,20 kg",
+
+pais:"Suíça",
+
+ano:"1968",
+
+licenca:"Classe 0"
+
+},
+
+];
+const acessorios=[
+
+{
+
+nome:"Mira de Ferro Ajustada",
+
+imagem:"https://i.ibb.co/J1kqfXm/png-transparent-iron-sights-ar-15-style-rifle-receiver-laser-gun-miscellaneous-angle-assault-rifle.png",
+
+descricao:"Alça e massa de mira reguladas para melhorar a precisão sem alterar significativamente a arma.",
+
+tipo:"Mira",
+
+licenca:"Classe 0",
+
+compativel:[
+"Pistola",
+"Revólver",
+"Submetralhadora",
+"Fuzil"
+],
+
+peso:0.05,
+
+bonus:{
+precisao:5,
+recuo:0,
+furtividade:0,
+capacidade:0
+}
+
+},
+
+{
+
+nome:"Empunhadura de Borracha",
+
+imagem:"https://http2.mlstatic.com/D_NQ_NP_864641-MLB31768765380_082019-O.webp",
+
+descricao:"Melhora a firmeza da pegada e reduz pequenas vibrações durante o disparo.",
+
+tipo:"Empunhadura",
+
+licenca:"Classe 0",
+
+compativel:[
+"Pistola",
+"Revólver"
+],
+
+peso:0.10,
+
+bonus:{
+precisao:3,
+recuo:-3,
+furtividade:0,
+capacidade:0
+}
+
+},
+
+{
+
+nome:"Bandoleira Militar",
+
+imagem:"https://http2.mlstatic.com/D_NQ_NP_808933-MLB76888295406_062024-O-bandoleira-tatica-militar-ajustavel-3-pontas-em-nylon.webp",
+
+descricao:"Facilita o transporte da arma e melhora a mobilidade durante missões.",
+
+tipo:"Bandoleira",
+
+licenca:"Classe 0",
+
+compativel:[
+"Fuzil",
+"Submetralhadora",
+"Escopeta",
+"Sniper"
+],
+
+peso:0.20,
+
+bonus:{
+precisao:0,
+recuo:0,
+furtividade:0,
+capacidade:0
+}
+
+},
+
+{
+
+nome:"Coronha de Madeira Reforçada",
+
+imagem:"https://http2.mlstatic.com/D_NQ_NP_620403-MLB50484665524_062022-O.webp",
+
+descricao:"Coronha reforçada que melhora a estabilidade do disparo.",
+
+tipo:"Coronha",
+
+licenca:"Classe I",
+
+compativel:[
+"Fuzil",
+"Submetralhadora",
+"Escopeta"
+],
+
+peso:0.40,
+
+bonus:{
+precisao:6,
+recuo:-5,
+furtividade:0,
+capacidade:0
+}
+
+},
+
+{
+
+nome:"Carregador Estendido",
+
+imagem:"https://cdn11.bigcommerce.com/s-m49pmlf/images/stencil/500x659/products/3695/16446/SP0266_Gray__87947.1715632623.png",
+
+descricao:"Aumenta a capacidade de munição da arma.",
+
+tipo:"Carregador",
+
+licenca:"Classe I",
+
+compativel:[
+"Pistola",
+"Submetralhadora",
+"Fuzil"
+],
+
+peso:0.30,
+
+bonus:{
+precisao:0,
+recuo:0,
+furtividade:0,
+capacidade:15
+}
+
+},
+]
+
+
+const cards = document.getElementById("cards");
+
+const pesquisa = document.querySelector(".search");
+
+const filtro = document.querySelector(".filter");
+
+
+let favoritos = [];
+
+function carregarArmas(lista = armas){
+
+cards.innerHTML = "";
+
+lista.forEach((arma)=>{
+
+    cards.innerHTML += `
+
+<div class="card" onclick="abrirArma(${armas.indexOf(arma)})">
+
+<img src="${arma.imagem}">
+
+<div class="card-body">
+
+<div class="card-title">
+${arma.nome}
+</div>
+
+<div class="card-category">
+${arma.categoria}
+</div>
+
+<p>
+${arma.descricao}
+</p>
+
+<div class="card-info">
+
+<span>${arma.calibre}</span>
+
+<span>${arma.pais}</span>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("totalArmas").innerText = lista.length;
+
+}
+
+
+
+carregarArmas();
+
+
+
+function abrirArma(index){
+
+
+const arma = armas[index];
+
+
+document.getElementById("modalImagem").src = arma.imagem;
+
+
+document.getElementById("modalTitulo").innerText = arma.nome;
+
+
+document.getElementById("modalDescricao").innerText = arma.descricao;
+
+
+document.getElementById("modalCalibre").innerText = arma.calibre;
+
+
+document.getElementById("modalCategoria").innerText = arma.categoria;
+
+
+document.getElementById("modalDano").innerText = arma.dano;
+
+
+document.getElementById("modalCritico").innerText = arma.critico;
+
+
+document.getElementById("modalEspacos").innerText = arma.espacos;
+
+
+document.getElementById("modalPeso").innerText = arma.peso;
+
+
+document.getElementById("modalPais").innerText = arma.pais;
+
+
+document.getElementById("modalAno").innerText = arma.ano;
+
+
+
+document.getElementById("modal").style.display="flex";
+
+
+}
+
+
+
+function fecharModal(){
+
+
+document.getElementById("modal").style.display="none";
+
+
+}
+
+
+
+window.onclick=function(event){
+
+
+const modal=document.getElementById("modal");
+
+
+if(event.target===modal){
+
+fecharModal();
+
+}
+
+
+}
+
+
+
+pesquisa.addEventListener("input",()=>{
+
+
+const texto=pesquisa.value.toLowerCase();
+
+
+const resultado=armas.filter((arma)=>{
+
+
+return (
+
+arma.nome.toLowerCase().includes(texto)
+
+||
+
+arma.categoria.toLowerCase().includes(texto)
+
+||
+
+arma.calibre.toLowerCase().includes(texto)
+
+||
+
+arma.pais.toLowerCase().includes(texto)
+
+
+);
+
+
+});
+
+
+carregarArmas(resultado);
+
+
+});
+
+
+filtro.addEventListener("change",()=>{
+
+
+const categoria=filtro.value;
+
+
+if(categoria==="Todas"){
+
+carregarArmas();
+
+return;
+
+}
+
+
+
+const resultado = armas.filter((arma)=>{
+
+
+const nomeCategoria = arma.categoria.toLowerCase();
+
+
+const filtroCategoria = categoria.toLowerCase();
+
+
+
+if(filtroCategoria === "pistolas"){
+
+return nomeCategoria.includes("pistola");
+
+}
+
+if(filtroCategoria==="revólveres"){
+
+return nomeCategoria.includes("revólver");
+
+}
+
+if(filtroCategoria === "fuzis"){
+
+return nomeCategoria.includes("fuzil") || nomeCategoria.includes("carabina");
+
+}
+
+
+if(filtroCategoria === "submetralhadoras"){
+
+return nomeCategoria.includes("submetralhadora");
+
+}
+
+
+if(filtroCategoria === "escopetas"){
+
+return nomeCategoria.includes("escopeta");
+
+}
+
+
+if(filtroCategoria === "metralhadoras"){
+
+return nomeCategoria.includes("metralhadora");
+
+}
+
+
+if(filtroCategoria === "snipers"){
+
+return nomeCategoria.includes("sniper");
+
+}
+
+
+if(filtroCategoria === "explosivos"){
+
+return nomeCategoria.includes("explosivo") || nomeCategoria.includes("antitanque");
+
+}
+
+
+if(filtroCategoria === "armas brancas"){
+
+return nomeCategoria.includes("branca");
+
+}
+
+
+
+return false;
+
+
+});
+
+
+carregarArmas(resultado);
+
+
+
+});
+
+
+// SISTEMA DE FAVORITOS
+
+
+function alternarFavorito(index){
+
+
+if(favoritos.includes(index)){
+
+
+favoritos = favoritos.filter(id=>id!==index);
+
+
+}else{
+
+
+favoritos.push(index);
+
+
+}
+
+
+salvarFavoritos();
+
+
+}
+
+
+
+function salvarFavoritos(){
+
+
+localStorage.setItem(
+
+"arsenal1968_favoritos",
+
+JSON.stringify(favoritos)
+
+);
+
+
+}
+
+
+
+function carregarFavoritos(){
+
+
+const dados = localStorage.getItem(
+
+"arsenal1968_favoritos"
+
+);
+
+
+
+if(dados){
+
+
+favoritos = JSON.parse(dados);
+
+
+}
+
+
+}
+
+
+
+carregarFavoritos();
+
+
+
+// FUNÇÃO PARA MOSTRAR APENAS FAVORITOS
+
+
+function mostrarFavoritos(){
+
+
+const lista = armas.filter((arma,index)=>{
+
+
+return favoritos.includes(index);
+
+
+});
+
+
+
+carregarArmas(lista);
+
+
+
+}
+
+
+
+// BOTÕES DO MENU
+
+
+const botoesMenu=document.querySelectorAll(".menu button");
+
+
+
+botoesMenu[0].onclick=function(){
+
+
+carregarArmas();
+
+
+};
+
+
+
+botoesMenu[1].onclick=function(){
+
+
+alert(
+
+"Use o filtro de categorias para navegar pelo arsenal."
+
+);
+
+
+};
+
+
+
+botoesMenu[2].onclick=function(){
+
+
+mostrarFavoritos();
+
+
+};
+
+
+
+botoesMenu[3].onclick=function(){
+
+
+alert(
+
+"ARSENAL 1968\n\nBanco de armamentos histórico adaptado para campanhas de RPG."
+
+);
+
+
+};
+
+
+
+// ANIMAÇÃO DE ENTRADA DOS CARDS
+
+
+function animarCards(){
+
+
+const elementos=document.querySelectorAll(".card");
+
+
+elementos.forEach((card,i)=>{
+
+
+card.style.opacity="0";
+
+
+card.style.transform="translateY(20px)";
+
+
+
+setTimeout(()=>{
+
+
+card.style.transition=".4s";
+
+
+card.style.opacity="1";
+
+
+card.style.transform="translateY(0)";
+
+
+},i*50);
+
+
+
+});
+
+
+}
+
+
+
+const carregamentoOriginal=carregarArmas;
+
+
+carregarArmas=function(lista=armas){
+
+
+carregamentoOriginal(lista);
+
+
+setTimeout(animarCards,50);
+
+
+};
+
+
+
+carregarArmas();
+
+
+
+// ATUALIZAÇÃO AUTOMÁTICA DO ANO
+
+console.log(
+
+"ARSENAL 1968 iniciado com sucesso."
+
+);
+
+const telaArsenal = document.getElementById("cards");
+const telaOficina = document.getElementById("oficina");
+
+const btnOficina = document.getElementById("btnOficina");
+
+btnOficina.addEventListener("click", abrirOficina);
+
+function abrirOficina(){
+
+    telaArsenal.style.display="none";
+
+    telaOficina.style.display="flex";
+
+    carregarListaOficina();
+
+}
+function carregarListaOficina(){
+
+const lista=document.getElementById("listaArmasOficina");
+
+lista.innerHTML="";
+
+armas.forEach((arma)=>{
+
+    lista.innerHTML+=`
+
+    <div class="armaOficina"
+
+    onclick="selecionarArma('${arma.nome}')">
+
+        <img src="${arma.imagem}">
+
+        <div>
+
+            <strong>${arma.nome}</strong>
+
+            <br>
+
+            ${arma.categoria}
+
+        </div>
+
+    </div>
+
+    `;
+
+});
+
+}
+function selecionarArma(nome){
+    document.getElementById("oficinaLista").style.display="none";
+
+document.getElementById("oficinaFicha").style.display="block";
+document.getElementById("voltarLista").onclick=function(){
+
+document.getElementById("oficinaFicha").style.display="none";
+
+document.getElementById("oficinaLista").style.display="block";
+
+}
+const arma=armas.find(a=>a.nome===nome);
+
+document.getElementById("oficinaImagem").src=arma.imagem;
+
+document.getElementById("oficinaNome").innerText=arma.nome;
+
+document.getElementById("oficinaCategoria").innerText=
+
+"Categoria: "+arma.categoria;
+
+document.getElementById("oficinaLicenca").innerText=
+
+"Licença: "+(arma.licenca||"Classe 0");
+document.getElementById("statusArma").innerHTML=`
+
+<hr>
+
+<p><b>Dano:</b> ${arma.dano}</p>
+
+<p><b>Crítico:</b> ${arma.critico}</p>
+
+<p><b>Espaços:</b> ${arma.espacos}</p>
+
+<p><b>Peso:</b> ${arma.peso}</p>
+
+<p><b>Calibre:</b> ${arma.calibre}</p>
+
+`;
+const lista=document.getElementById("listaAcessorios");
+
+lista.innerHTML="";
+acessorios.forEach((item)=>{
+
+if(
+
+item.compativel.includes(arma.categoria)
+
+){
+
+lista.innerHTML+=`
+
+<div class="itemAcessorio"
+
+onclick="equiparAcessorio('${item.nome}')">
+
+<img src="${item.imagem}" class="imgAcessorio">
+
+<h4>${item.nome}</h4>
+
+<p>${item.tipo}</p>
+
+<p>${item.licenca}</p>
+
+<p>
+
+Precisão: ${item.bonus.precisao}
+
+<br>
+
+Recuo: ${item.bonus.recuo}
+
+<br>
+
+Capacidade: ${item.bonus.capacidade}
+
+</p>
+
+<button>
+
+Equipar
+
+</button>
+
+</div>
+
+`;
+
+}
+
+});
+let armaAtual=null;
+
+let equipamentos=[];
+function equiparAcessorio(nome){
+
+if(equipamentos.includes(nome)){
+
+equipamentos=equipamentos.filter(a=>a!=nome);
+
+}else{
+
+equipamentos.push(nome);
+
+}
+
+mostrarEquipados();
+
+}
+function mostrarEquipados(){
+
+const itens=document.querySelectorAll(".itemAcessorio");
+
+itens.forEach((card)=>{
+
+const titulo=card.querySelector("h4").innerText;
+
+if(equipamentos.includes(titulo)){
+
+card.style.border="2px solid lime";
+
+}else{
+
+card.style.border="2px solid transparent";
+
+}
+
+});
+
+}
+
+}
+</script>
+
+
+</body>
+
+
+</html>
