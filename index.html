@@ -4062,8 +4062,8 @@ capacidade:15
 }
 
 },
-    {
 
+    {
 nome:"Mira Telescópica 4x",
 
 imagem:"",
@@ -4945,9 +4945,9 @@ lista.innerHTML="";
 acessorios.forEach((item)=>{
 
 if(
-
-item.compativel.includes(arma.categoria)
-
+    item.compativel.some(tipo =>
+        arma.categoria.includes(tipo)
+    )
 ){
 
 lista.innerHTML+=`
